@@ -1,0 +1,46 @@
+body {
+    background-color: black;
+}
+
+.headercontainer h1 {
+    text-align: center;
+    color: orange;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    background-color: lightgrey;
+    border-radius: 20px;
+    border: thick double;
+    border-color: orange;
+    max-width: 80%;
+}
+
+.blocCentral {}
+
+.blocDedans {
+
+
+    background-color: lightgray;
+    margin: auto;
+    max-width: 80%;
+    min-height: 700px;
+
+}
+
+.blocDedans h2 {
+    padding-top: 1%;
+    text-align: center;
+
+}
+
+.elements {
+    margin: auto;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: rgb(172, 172, 172);
+    max-width: 80%;
+
+}
