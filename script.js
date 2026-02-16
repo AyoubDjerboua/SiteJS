@@ -120,8 +120,25 @@ const clearCartButton = document.getElementById("clear-cart");
 
 const cart = [];
 
-function imageUrl(label) {
-    return `https://placehold.co/300x180/1f2230/eceef8?text=${encodeURIComponent(label)}`;
+const weaponTypeImages = {
+    "Grande épée": "https://static.wikia.nocookie.net/monsterhunter/images/1/15/MH4-Great_Sword_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011522",
+    "Épée longue": "https://static.wikia.nocookie.net/monsterhunter/images/f/fc/MH4-Long_Sword_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011520",
+    "Épée et bouclier": "https://static.wikia.nocookie.net/monsterhunter/images/b/bf/MH4-Sword_and_Shield_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011519",
+    "Doubles lames": "https://static.wikia.nocookie.net/monsterhunter/images/6/6f/MH4-Dual_Blades_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140615225729",
+    "Marteau": "https://static.wikia.nocookie.net/monsterhunter/images/3/32/MH4-Hammer_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011521",
+    "Cor de chasse": "https://static.wikia.nocookie.net/monsterhunter/images/b/b1/MH4-Hunting_Horn_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011521",
+    "Lance": "https://static.wikia.nocookie.net/monsterhunter/images/5/54/MH4-Lance_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011520",
+    "Lance-canon": "https://static.wikia.nocookie.net/monsterhunter/images/d/d7/MH4-Gunlance_Equipment_Render_001.png/revision/latest/scale-to-width-down/125?cb=20140122011522",
+    "Morpho-hache": "https://static.wikia.nocookie.net/monsterhunter/images/c/c8/MH4-Switch_Axe_Equipment_Render_001.png/revision/latest/scale-to-width-down/182?cb=20140626032107",
+    "Volto-hache": "https://static.wikia.nocookie.net/monsterhunter/images/5/56/MH4-Charge_Blade_Equipment_Render_001.png/revision/latest/scale-to-width-down/175?cb=20140610185223",
+    "Insectoglaive": "https://static.wikia.nocookie.net/monsterhunter/images/9/9b/MH4-Insect_Glaive_Equipment_Render_001.png/revision/latest/scale-to-width-down/182?cb=20140610185945",
+    "Fusarbalète léger": "https://static.wikia.nocookie.net/monsterhunter/images/3/36/MH4-Light_Bowgun_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011520",
+    "Fusarbalète lourd": "https://static.wikia.nocookie.net/monsterhunter/images/b/bc/MH4-Heavy_Bowgun_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140122011521",
+    "Arc": "https://static.wikia.nocookie.net/monsterhunter/images/5/5a/MH4-Bow_Equipment_Render_001.png/revision/latest/scale-to-width-down/200?cb=20140610184349"
+};
+
+function imageUrl(type, label) {
+    return weaponTypeImages[type] || `https://placehold.co/300x180/1f2230/eceef8?text=${encodeURIComponent(label)}`;
 }
 
 function renderCatalogue() {
@@ -141,7 +158,7 @@ function renderCatalogue() {
             card.className = "weapon-card";
 
             const img = document.createElement("img");
-            img.src = imageUrl(weapon.name);
+            img.src = imageUrl(category.type, weapon.name);
             img.alt = weapon.name;
 
             const weaponName = document.createElement("h4");
