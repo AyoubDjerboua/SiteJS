@@ -1,46 +1,139 @@
+:root {
+    --bg: #111218;
+    --panel: #1b1d26;
+    --card: #252838;
+    --text: #eceef8;
+    --muted: #b4bad1;
+    --accent: #ff9f43;
+    --accent-hover: #ffb86b;
+    --border: #3b3f54;
+}
+
+* {
+    box-sizing: border-box;
+}
+
 body {
-    background-color: black;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
-.headercontainer h1 {
+.site-header {
     text-align: center;
-    color: orange;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #0c0d12;
 }
 
-.navigation {
-    display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    background-color: lightgrey;
-    border-radius: 20px;
-    border: thick double;
-    border-color: orange;
-    max-width: 80%;
+.site-header h1 {
+    margin: 0;
+    color: var(--accent);
 }
 
-.blocCentral {}
-
-.blocDedans {
-
-
-    background-color: lightgray;
-    margin: auto;
-    max-width: 80%;
-    min-height: 700px;
-
+.site-header p {
+    margin: 8px 0 0;
+    color: var(--muted);
 }
 
-.blocDedans h2 {
-    padding-top: 1%;
+.layout {
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 16px;
+    align-items: start;
+}
+
+.catalogue-container,
+.cart-container {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.weapon-section {
+    margin-bottom: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.weapon-section h3 {
+    margin: 6px 0 12px;
+    color: var(--accent);
+}
+
+.weapon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 12px;
+}
+
+.weapon-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
     text-align: center;
-
 }
 
-.elements {
-    margin: auto;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: rgb(172, 172, 172);
-    max-width: 80%;
+.weapon-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+}
 
+.weapon-card h4 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+}
+
+.weapon-card p {
+    margin: 0 0 10px;
+    color: var(--muted);
+}
+
+button {
+    background: var(--accent);
+    color: #161616;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button:hover {
+    background: var(--accent-hover);
+}
+
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    max-height: 55vh;
+    overflow: auto;
+}
+
+#cart-items li {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    color: var(--muted);
+}
+
+#cart-total {
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
 }

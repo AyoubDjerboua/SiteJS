@@ -1,36 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="style.css" rel="stylesheet">
-    <div class="headercontainer">
-        <h1>Accueil</h1>
-        <div class="navigation">
-            <h2>Accueil</h2>
-            <h2>Produits</h2>
-            <h2>Truc</h2>
-            <h2>Contact</h2>
-        </div>
-    </div>
-    </headercontainer>
+    <title>Armurerie Hunter Shop</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="blocCentral">
-        <div class="blocDedans">
-            <h2>Blablabla</h2>
-            <div class="elements">
-                <p>Contenu 1</p>
-                <p>Contenu 2</p>
-                <p>Contenu 3</p>
-            </div>
+    <header class="site-header">
+        <h1>Armurerie Hunter Shop</h1>
+        <p>Site marchand simple pour débuter en JavaScript</p>
+    </header>
 
-        </div>
-    </div>
+    <main class="layout">
+        <section class="catalogue-container">
+            <h2>Catalogue (14 types d'armes)</h2>
+            <div id="catalogue"></div>
+        </section>
 
+        <aside class="cart-container">
+            <h2>Panier</h2>
+            <ul id="cart-items"></ul>
+            <p id="cart-total">Total : 0 z</p>
+            <button id="clear-cart">Vider le panier</button>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
