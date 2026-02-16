@@ -1,33 +1,63 @@
 <!DOCTYPE html>
+<!-- Page HTML5 en français pour un site marchand de Monster Hunter -->
 <html lang="fr">
 
 <head>
+    <!-- Métadonnées du site -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Forge</title>
+    <title>Grand-Camp</title>
+    <!-- Lien vers le fichier CSS pour le style sombre -->
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- EN-TÊTE du site -->
     <header class="site-header">
-        <h1>Forge</h1>
-        <p></p>
+        <h1>Grand-Camp</h1>
+        <p>Forge</p>
     </header>
 
+    <!-- CONTENU PRINCIPAL -->
     <main class="layout">
+        <!-- COLONNE DE GAUCHE : Catalogue et avis -->
         <section class="catalogue-container">
-            <h2>Catalogue (14 types d'armes)</h2>
+            <!-- DROPDOWN pour choisir le type d'arme -->
+            <div class="filter-section">
+                <label for="weapon-select">Sélectionnez une arme :</label>
+                <select id="weapon-select"></select>
+                <!-- Le dropdown est rempli par JavaScript -->
+            </div>
+
+            <!-- Zone où les armes s'affichent -->
             <div id="catalogue"></div>
+
+            <!-- SECTION DES AVIS -->
+            <div class="reviews-section">
+                <h3>Avis sur cette catégorie</h3>
+                <!-- Formulaire pour ajouter un nouvel avis -->
+                <form id="review-form">
+                    <textarea id="review-input" placeholder="Laissez votre avis..."></textarea>
+                    <button type="submit">Publier l'avis</button>
+                </form>
+                <!-- Zone où les avis s'affichent -->
+                <div id="reviews-list"></div>
+            </div>
         </section>
 
+        <!-- COLONNE DE DROITE : Panier -->
         <aside class="cart-container">
             <h2>Panier</h2>
+            <!-- Liste des articles du panier -->
             <ul id="cart-items"></ul>
+            <!-- Affichage du total -->
             <p id="cart-total">Total : 0 z</p>
+            <!-- Bouton pour vider le panier -->
             <button id="clear-cart">Vider le panier</button>
         </aside>
     </main>
 
+    <!-- Lien vers le fichier JavaScript qui gère tout le fonctionnement -->
     <script src="script.js"></script>
 </body>
 
