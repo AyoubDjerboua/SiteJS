@@ -1,46 +1,491 @@
+/* ===== THÈME SOMBRE - VARIABLES GLOBALES ===== */
+:root {
+    --bg: #111218;
+    /* Arrière-plan sombre principal */
+    --panel: #1b1d26;
+    /* Pannels/sections */
+    --card: #252838;
+    /* Cartes d'armes */
+    --text: #eceef8;
+    /* Couleur du texte clair */
+    --muted: #b4bad1;
+    /* Texte moins visible */
+    --accent: #ff9f43;
+    /* Couleur orange pour les accents */
+    --accent-hover: #ffb86b;
+    /* Couleur orange au survol */
+    --border: #3b3f54;
+    /* Couleurs des bordures */
+}
+
+/* ===== STYLES GÉNÉRAUX ===== */
+* {
+    box-sizing: border-box;
+    /* Inclure les marges dans les dimensions */
+}
+
 body {
-    background-color: black;
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bg);
+    color: var(--text);
 }
 
-.headercontainer h1 {
+/* ===== EN-TÊTE DU SITE ===== */
+.site-header {
     text-align: center;
-    color: orange;
+    padding: 24px 16px;
+    border-bottom: 1px solid var(--border);
+    background: #0c0d12;
 }
 
-.navigation {
+.site-header h1 {
+    margin: 0;
+    color: var(--accent);
+    /* Titre en orange */
+}
+
+.site-header p {
+    margin: 8px 0 0;
+    color: var(--muted);
+    /* Sous-titre en gris */
+}
+
+/* ===== MENU DÉROULANT DANS L'EN-TÊTE ===== */
+.header-nav {
     display: flex;
-    justify-content: space-evenly;
-    margin: auto;
-    background-color: lightgrey;
-    border-radius: 20px;
-    border: thick double;
-    border-color: orange;
-    max-width: 80%;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.blocCentral {}
-
-.blocDedans {
-
-
-    background-color: lightgray;
-    margin: auto;
-    max-width: 80%;
-    min-height: 700px;
-
+.dropdown-menu {
+    position: relative;
+    display: inline-block;
 }
 
-.blocDedans h2 {
-    padding-top: 1%;
+.dropdown-toggle {
+    margin: 0;
+    color: var(--muted);
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.3s;
+}
+
+.dropdown-toggle:hover {
+    color: var(--accent);
+}
+
+/* Menu déroulant caché par défaut */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 8px 0;
+    z-index: 100;
+    min-width: 180px;
+}
+
+.dropdown-content a {
+    display: block;
+    color: var(--text);
+    text-decoration: none;
+    padding: 8px 16px;
+    transition: background 0.2s;
+}
+
+.dropdown-content a:hover {
+    background: var(--panel);
+    color: var(--accent);
+}
+
+/* Afficher le menu au survol */
+.dropdown-menu:hover .dropdown-content {
+    display: block;
+}
+
+/* ===== DISPOSITION PRINCIPALE ===== */
+.layout {
+    max-width: 1300px;
+    margin: 20px auto;
+    padding: 0 16px;
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    /* Catalogue à gauche, panier à droite */
+    gap: 16px;
+    align-items: start;
+}
+
+.catalogue-container,
+.cart-container {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+/* ===== SECTION DES ARMES ===== */
+.weapon-section {
+    margin-bottom: 24px;
+    border-top: 1px solid var(--border);
+    padding-top: 12px;
+}
+
+.weapon-section h3 {
+    margin: 6px 0 12px;
+    color: var(--accent);
+    /* Titre de catégorie en orange */
+}
+
+/* ===== GRILLE DES CARTES D'ARMES ===== */
+.weapon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    /* 3 cartes par ligne environ */
+    gap: 12px;
+}
+
+/* ===== CARTE D'UNE ARME ===== */
+.weapon-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
     text-align: center;
-
 }
 
-.elements {
-    margin: auto;
-    display: flex;
-    justify-content: space-evenly;
-    background-color: rgb(172, 172, 172);
-    max-width: 80%;
+.weapon-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: contain;
+    background: #000000;
+    /* Fond noir pour les images */
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    margin-bottom: 8px;
+}
 
+.weapon-card h4 {
+    margin: 0 0 8px;
+    font-size: 0.95rem;
+}
+
+.weapon-card p {
+    margin: 0 0 10px;
+    color: var(--muted);
+    /* Prix en gris */
+}
+
+/* ===== BOUTONS ===== */
+button {
+    background: var(--accent);
+    /* Boutons en orange */
+    color: #161616;
+    /* Texte sombre */
+    border: none;
+    border-radius: 6px;
+    padding: 8px 10px;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+button:hover {
+    background: var(--accent-hover);
+    /* Orange plus clair au survol */
+}
+
+/* ===== PANIER ===== */
+#cart-items {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 12px;
+    max-height: 55vh;
+    /* Limiter la hauteur du panier */
+    overflow: auto;
+}
+
+#cart-items li {
+    border-bottom: 1px solid var(--border);
+    padding: 8px 0;
+    color: var(--muted);
+}
+
+#cart-total {
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+/* ===== FILTRE (DROPDOWN) ===== */
+.filter-section {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.filter-section label {
+    color: var(--text);
+    font-weight: 600;
+}
+
+#weapon-select {
+    padding: 8px 12px;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+#weapon-select:hover {
+    border-color: var(--accent);
+    /* Bordure orange au survol */
+}
+
+/* ===== SECTION DES AVIS ===== */
+.reviews-section {
+    margin-top: 30px;
+    padding: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.reviews-section h3 {
+    margin-top: 0;
+    color: var(--accent);
+    /* Titre en orange */
+}
+
+#review-form {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Champ de texte pour l'avis */
+#review-input {
+    padding: 10px;
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#review-input::placeholder {
+    color: var(--muted);
+    /* Texte du placeholder en gris */
+}
+
+#review-form button {
+    align-self: flex-start;
+    /* Bouton à gauche */
+}
+
+/* Liste des avis */
+#reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Chaque avis affiché */
+.review-item {
+    padding: 10px;
+    background: var(--panel);
+    border-left: 3px solid var(--accent);
+    /* Barre orange à gauche */
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* ===== GESTION DES PAGES (Boutique / Galerie) ===== */
+.page {
+    display: block;
+}
+
+.page.hidden {
+    display: none;
+}
+
+.back-button {
+    margin-bottom: 16px;
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.back-button:hover {
+    background: var(--card);
+}
+
+/* ===== GALERIE D'ARMES ===== */
+.gallery-controls {
+    margin: 16px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    padding: 10px 16px;
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.view-btn.active {
+    background: var(--accent);
+    color: #161616;
+    border-color: var(--accent);
+}
+
+.view-btn:hover:not(.active) {
+    border-color: var(--accent);
+}
+
+/* Mode MOSAÏQUE (grille responsive) */
+#gallery.mosaic {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+}
+
+/* Mode COLONNE (une seule colonne) */
+#gallery.column {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    max-width: 400px;
+}
+
+/* Images dans la galerie */
+.gallery-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    background: #000000;
+    display: block;
+    flex-shrink: 0;
+}
+
+.gallery-item-info {
+    padding: 10px;
+    background: var(--panel);
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    flex: 1;
+}
+
+.gallery-item-info h4 {
+    margin: 0 0 5px;
+    font-size: 0.9rem;
+    color: var(--text);
+}
+
+.gallery-item-info p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+/* ===== RESPONSIVE (Téléphones) ===== */
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+        /* Une seule colonne sur mobile */
+    }
+}
+
+.reviews-section {
+    margin-top: 30px;
+    padding: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+}
+
+.reviews-section h3 {
+    margin-top: 0;
+    color: var(--accent);
+}
+
+#review-form {
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#review-input {
+    padding: 10px;
+    background: var(--panel);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    resize: vertical;
+    min-height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#review-input::placeholder {
+    color: var(--muted);
+}
+
+#review-form button {
+    align-self: flex-start;
+}
+
+#reviews-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.review-item {
+    padding: 10px;
+    background: var(--panel);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+    .layout {
+        grid-template-columns: 1fr;
+    }
 }
