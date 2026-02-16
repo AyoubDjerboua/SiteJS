@@ -182,12 +182,6 @@ function addReview(weaponType, reviewText) {
 // ===== GESTION DU DROPDOWN =====
 // Remplir le dropdown avec tous les types d'armes
 function populateSelect() {
-    // Créer l'option par défaut
-    const defaultOption = document.createElement("option");
-    defaultOption.value = "";
-    defaultOption.textContent = "-- Choisir une catégorie --";
-    weaponSelect.appendChild(defaultOption);
-
     // Créer une option pour chaque type d'arme
     weaponsByType.forEach((category) => {
         const option = document.createElement("option");
@@ -301,6 +295,102 @@ reviewForm.addEventListener("submit", (e) => {
     e.preventDefault(); // Empêcher le rechargement de la page
     const reviewText = reviewInput.value;
     addReview(selectedWeaponType, reviewText); // Ajouter l'avis
+});
+
+// ===== GESTION DE LA GALERIE =====
+// Récupérer les éléments de la galerie
+const galleryPage = document.getElementById("gallery-page");
+const shopPage = document.getElementById("shop-page");
+const gallery = document.getElementById("gallery");
+const mosaicBtn = document.getElementById("mosaic-btn");
+const columnBtn = document.getElementById("column-btn");
+const backButton = document.getElementById("back-to-shop");
+const dropdownLinks = document.querySelectorAll(".dropdown-content a");
+
+// Fonction pour remplir la galerie avec toutes les armes
+function renderGallery() {
+    gallery.innerHTML = "";
+
+    // Parcourir toutes les catégories
+    weaponsByType.forEach((category) => {
+        // Parcourir toutes les armes
+        category.weapons.forEach((weapon) => {
+            const item = document.createElement("div");
+            item.className = "gallery-item";
+
+            // Image de l'arme
+            const img = document.createElement("img");
+            img.src = weapon.image;
+            img.alt = weapon.name;
+
+            // Informations de l'arme
+            const info = document.createElement("div");
+            info.className = "gallery-item-info";
+
+            const name = document.createElement("h4");
+            name.textContent = weapon.name;
+
+            const details = document.createElement("p");
+            details.textContent = `${category.type} - ${weapon.price} z`;
+
+            info.appendChild(name);
+            info.appendChild(details);
+
+            item.appendChild(img);
+            item.appendChild(info);
+            gallery.appendChild(item);
+        });
+    });
+}
+
+// Changer le mode d'affichage en mosaïque
+function setMosaicView() {
+    gallery.classList.remove("column");
+    gallery.classList.add("mosaic");
+    mosaicBtn.classList.add("active");
+    columnBtn.classList.remove("active");
+}
+
+// Changer le mode d'affichage en colonne
+function setColumnView() {
+    gallery.classList.remove("mosaic");
+    gallery.classList.add("column");
+    columnBtn.classList.add("active");
+    mosaicBtn.classList.remove("active");
+}
+
+// Afficher la galerie et masquer la boutique
+function showGallery() {
+    shopPage.classList.add("hidden");
+    galleryPage.classList.remove("hidden");
+    renderGallery();
+}
+
+// Afficher la boutique et masquer la galerie
+function showShop() {
+    galleryPage.classList.add("hidden");
+    shopPage.classList.remove("hidden");
+}
+
+// Écouteurs pour les boutons de mode d'affichage
+mosaicBtn.addEventListener("click", setMosaicView);
+columnBtn.addEventListener("click", setColumnView);
+
+// Écouteur pour le bouton retour
+backButton.addEventListener("click", showShop);
+
+// Écouteurs pour les liens du menu déroulant
+dropdownLinks.forEach((link) => {
+    link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const page = e.target.getAttribute("data-page");
+
+        if (page === "gallery") {
+            showGallery();
+        } else if (page === "shop") {
+            showShop();
+        }
+    });
 });
 
 // ===== INITIALISATION AU DÉMARRAGE =====
